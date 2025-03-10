@@ -130,17 +130,11 @@ include('includes/sidebar.php');
 <!-- <div class="app-content"> </div> -->
 <!--begin::Container-->
 <!-- jQuery (full version, NOT slim) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <!--end::Row-->
 <?php
 include('includes/script.php');
 ?>
-
-
 <?php
 include('includes/footer.php');
 ?>

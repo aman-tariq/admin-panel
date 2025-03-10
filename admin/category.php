@@ -93,7 +93,12 @@ include('includes/sidebar.php');
                                                     <td><input type="checkbox" name="status" <?= $categitem['status'] == '1' ? 'checked':'' ?> readonly /></td>
                                                     <td><?= $categitem['created_at']; ?></td>
                                                     <td><a href="category-edit.php?id=<?= $categitem['id']; ?>" class="btn btn-success">Edit</a></td>
-                                                    <td><a href="#" class="btn btn-danger">Delete</a></td>
+                                                    <td>
+                                                        <form action="code.php" method="POST">
+                                                            <input type="text" name="cate_delete_id" value= "<?= $categitem['id']; ?>" hidden> 
+                                                            <button type="submit" name="cate_delete_btn" class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </td>
                                                 </tr>
                                                 <?php
                                             }
@@ -122,3 +127,4 @@ include('includes/script.php');
 <?php
 include('includes/footer.php');
 ?>
+

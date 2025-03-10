@@ -1,7 +1,46 @@
 <?php
-session_start();
 include('config/dbcon.php');
 include('authentication.php');
+
+if(isset($_POST['product_save'])){
+    $category_id = $_POST['category_id'];
+    $name = $_POST['name'];
+    $small_description = $_POST['small_description'];
+    $long_description = $_POST['long_description'];
+    $price = $_POST['price'];
+    $offerprice = $_POST['offerprice'];
+    $tax = $_POST['tax'];
+    $quantity = $_POST['quantity'];
+    $status = isset($_POST['status']) == true ? '1' : '0';
+    $image = $_FILES['image']['name'];
+
+    $allowed_extension = array('jpg', 'jpeg', 'png');
+    $file_extension = pathinfo($image, PATHINFO_EXTENSION);
+    $filename = time().'.'.$file_extension;
+
+    if(!in_array($file_extension, $allowed_extension)){
+        $_SESSION['status'] = "You are allowed only jpg, jpeg, png images";
+        header('Location: product.php');
+        exit(0);
+    }
+    else{
+        $query = "INSERT INTO `products` (`category_id`, `name`, `small_description`, `long_description`, `price`, `offerprice`, `tax`, `quantity`,`image`, `status`) 
+                  VALUES ('$category_id', '$name', '$small_description', '$long_description', '$price', '$offerprice', '$tax', $quantity, '$filename', '$status')";
+        $query_run = mysqli_query($conn, $query);
+        if($query_run){
+            move_uploaded_file($_FILES['image']['tmp_name'], "uploads/products".$filename);
+            $_SESSION['status'] = "Product added successfully";
+            header('Location: product.php');
+            exit(0);
+        }
+        else{
+            $_SESSION['status'] = "Product not added";
+            header('Location: product.php');
+            exit(0);
+        }
+    }
+
+}
 
 if(isset($_POST['category_save'])){
     $name = $_POST['name'];
@@ -18,7 +57,7 @@ if(isset($_POST['category_save'])){
         header("location: category.php");
     }
     else{
-        $_SESSION['status'] = "Category not added: " . $conn->error;
+        $_SESSION['status'] = "Category not added: ";
         header("location: category.php");
     }
 }
@@ -45,6 +84,20 @@ if(isset($_POST['category_update'])){
     }
 }
 
+if(isset($_POST['cate_delete_btn'])){
+    $categ_id = $_POST['cate_delete_id'];
+    $query = "DELETE FROM `categories` WHERE `id`='$categ_id'";
+    $query_run = mysqli_query($conn, $query);
+
+    if($query_run){
+        $_SESSION['status'] = "Category deleted successfully";
+        header("location: category.php");
+    }
+    else{
+        $_SESSION['status'] = "Category deletion failed: ";
+        header("location: category.php");
+    }
+}
 
 
 if(isset($_POST['logout_btn'])){
