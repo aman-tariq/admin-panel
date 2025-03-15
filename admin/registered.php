@@ -1,6 +1,6 @@
 <?php
 include('includes/header.php');
-include('authentication.php');
+include('authentication.php');   
 include('includes/top-navbar.php');
 include('includes/sidebar.php');
 include('config/dbcon.php');

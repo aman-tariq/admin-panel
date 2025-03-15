@@ -41,26 +41,34 @@ include('includes/sidebar.php');
                                         if ($query_run) {
                                             while ($categitem = mysqli_fetch_assoc($query_run)) {
                                                 ?>
-                                                <tr>
-                                                    <td><?= $categitem['id']; ?></td>
-                                                    <td><?= $categitem['name']; ?></td>
-                                                    <td><?= $categitem['price']; ?></td>
-                                                    
-                                                    <td><input type="checkbox" name="status" <?= $categitem['status'] == '1' ? 'checked':'' ?> readonly /></td>
-                                                    <td><?= $categitem['created_at']; ?></td>
-                                                    <td><a href="#" class="btn btn-success">Edit</a></td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-danger">Delete</a>
-                                                    </td>
-                                                </tr>
-                                                <?php
+                                    <tr>
+                                        <td><?= $categitem['id']; ?></td>
+                                        <td><?= $categitem['name']; ?></td>
+                                        <td><?= $categitem['price']; ?></td>
+
+                                        <td><input type="checkbox" name="status"
+                                                <?= $categitem['status'] == '1' ? 'checked':'' ?> readonly /></td>
+                                        <td><?= $categitem['created_at']; ?></td>
+                                        <td><a href="product-edit.php?id=<?= $categitem['id']; ?>"
+                                                class="btn btn-success">Edit</a></td>
+                                        <td>
+                                            <form action="code.php" method="POST">
+                                                <input type="hidden" name="product_delete_id"
+                                                    value="<?= $categitem['id']; ?>">
+                                                <button type="submit" name="product_delete_btn"
+                                                    class="btn btn-danger">Delete</button>
+                                            </form>
+
+                                        </td>
+                                    </tr>
+                                    <?php
                                             }
                                         } else {
                                             ?>
-                                            <tr>
-                                                <td colspan="7">No data found</td>
-                                            </tr>
-                                            <?php
+                                    <tr>
+                                        <td colspan="7">No data found</td>
+                                    </tr>
+                                    <?php
                                         }
                                         
                                     ?>
@@ -80,4 +88,3 @@ include('includes/script.php');
 <?php
 include('includes/footer.php');
 ?>
-

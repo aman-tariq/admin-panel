@@ -1,14 +1,16 @@
 <?php 
 
 include('includes/header.php'); 
-include('authentication.php');
 
 if(isset($_SESSION['auth'])){
     $_SESSION['status'] = "You are already logged in";
     header('Location: index.php');
     exit(0);
 }
+include('authentication.php'); 
+
 ?>
+
 
 
 
@@ -39,6 +41,9 @@ if(isset($_SESSION['auth'])){
         </div>
         <button type="submit" name="login_Btn" class="btn btn-primary w-100">Login</button>
     </form>
+    <div class="text-center mt-3">
+        <a href="registered.php">Create an account</a>
+    </div>
 </div>
 
 

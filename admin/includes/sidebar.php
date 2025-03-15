@@ -9,7 +9,7 @@
                   class="brand-image opacity-75 shadow" />
               <!--end::Brand Image-->
               <!--begin::Brand Text-->
-              <span class="brand-text fw-light">Admin-Aman</span>
+              <span class="brand-text fw-light">Admin-Dashboard</span>
               <!--end::Brand Text-->
           </a>
           <!--end::Brand Link-->
@@ -69,15 +69,15 @@
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="./layout/fixed-sidebar.html" class="nav-link">
+                              <a href="product.php" class="nav-link">
                                   <i class="nav-icon bi bi-circle"></i>
-                                  <p>Fixed Sidebar</p>
+                                  <p>Product</p>
                               </a>
                           </li>
                           <li class="nav-item">
-                              <a href="./layout/layout-custom-area.html" class="nav-link">
+                              <a href="sliders.php" class="nav-link">
                                   <i class="nav-icon bi bi-circle"></i>
-                                  <p>Layout <small>+ Custom Area </small></p>
+                                  <p>Sliders</p>
                               </a>
                           </li>
                           <li class="nav-item">
